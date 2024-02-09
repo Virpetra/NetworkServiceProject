@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct NetworkServiceProjectApp: App {
+    
+    @StateObject private var vm = NetworkManager()
+
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            NavigationView {
+                HomeView()
+                    .navigationBarHidden(true)
+            }
+            .environmentObject(vm)
         }
     }
 }
