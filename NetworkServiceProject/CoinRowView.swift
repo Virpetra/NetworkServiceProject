@@ -46,14 +46,36 @@ extension CoinRowView {
                 .font(.caption)
                 .foregroundColor(Color.theme.secondaryText)
                 .frame(minWidth: 30)
-            Circle()
-                .frame(width: 30, height: 30)
+            
+            AsyncImage(url: URL(string: coin.image)) { phase in
+                    switch phase {
+                    case .empty:
+                        // Placeholder image or activity indicator can be displayed here
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .frame(width: 30, height: 30)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                    case .failure(_):
+                        // Placeholder image or error message can be displayed here
+                        Image(systemName: "xmark.circle")
+                            .font(.system(size: 30))
+                            .foregroundColor(.red)
+                    @unknown default:
+                        // Placeholder image or error message can be displayed here
+                        Text("Unknown state")
+                    }
+                }
             Text(coin.symbol.uppercased())
                 .font(.headline)
                 .padding(.leading, 6)
                 .foregroundColor(Color.theme.accent)
         }
     }
+    
     
     private var centerColumn: some View {
         VStack(alignment: .trailing) {

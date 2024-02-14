@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @StateObject var networkManager = NetworkManager()
     @State private var coins: [CoinModel] = []
+    @EnvironmentObject private var vm : NetworkManager
     
     @State private var showPortfolio : Bool = false
     

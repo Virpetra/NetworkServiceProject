@@ -2,7 +2,7 @@
 //  CircleButtonAnimationView.swift
 //  NetworkServiceProject
 //
-//  Created by Mehmet Said Dede on 9.02.2024.
+//  Created by Mehmet Said Dede on 14.02.2024.
 //
 
 import SwiftUI
@@ -17,7 +17,7 @@ struct CircleButtonAnimationView: View {
             .scale(animate ? 1.0 : 0.0)
             .opacity(animate ? 0.0 : 1.0)
             .animation(Animation.easeOut(duration: 1.0), value: animate)
-            
+        
     }
 }
 
